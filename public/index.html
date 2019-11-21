@@ -27,8 +27,8 @@
     <ul class = "list-group" v-for="item in items">
         <li class="list-group-item">
           <input type="checkbox" :value="item" v-model="selectedNames">
-          {{item.name}}
-          {{item.price}}
+          {{item.name}} - 
+          Price - {{item.price}}
           <img :src="item.url" height="70" width="70">
         </li>
     </ul>
@@ -40,8 +40,8 @@
     <br>
     <ul class = "list-group" v-for="item in displayItems">
         <li class="list-group-item">
-          {{item.name}}
-          {{item.price}}
+          {{item.name}} - 
+          Price - {{item.price}}
           <img :src="item.url" height="70" width="70">
         </li>
     </ul>
@@ -54,7 +54,7 @@
 
       <!-- Copyright -->
       <div class="footer-copyright text-center py-3">© 2019 Copyright:
-        <a href="https://github.com/BYUCS260/lab-4-node-jtrockel"> Github</a>
+        <a href="https://github.com/BYUCS260/midterm-2-jtrockel"> Github</a>
       </div>
     <!-- Copyright -->
   </footer>
