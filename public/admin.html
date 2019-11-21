@@ -38,7 +38,7 @@
         <br><br>
       </div>
       
-      <ul class = "list-group" v-for="item in items">
+      <ul class = "list-group" v-for="item in orderedNames">
         <li class="list-group-item">
           <button type="button" class="btn btn-dark" @click="delEl(item)">delete</button>
           {{item.name}} - 
@@ -64,7 +64,6 @@
     <!-- Copyright -->
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
-  
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
   <script src="javascripts/admin.js"></script>
   

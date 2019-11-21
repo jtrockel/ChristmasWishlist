@@ -24,7 +24,7 @@
     <h1>Shopping Interface</h1>
     <a href = "admin.html"> Go to Admin Page</a>
     <h1>Current Products</h1>
-    <ul class = "list-group" v-for="item in items">
+    <ul class = "list-group" v-for="item in orderedNames">
         <li class="list-group-item">
           <input type="checkbox" :value="item" v-model="selectedNames">
           {{item.name}} - 

@@ -1,3 +1,5 @@
+
+
 var app = new Vue({
   el: '#admin',
   data: {
@@ -7,13 +9,18 @@ var app = new Vue({
     price:"",
     addItem: null,
     items: [],
+    emptyList: [],
   },
   created() {
     this.getItems()
   },
   computed: {
-  },
+    orderedNames: function () {
+      return this.items.sort((a, b) => (a.name > b.name) ? 1 : -1)
+  }
+},
   methods: {
+    
     async upload(){
       try {
         console.log(this.name);

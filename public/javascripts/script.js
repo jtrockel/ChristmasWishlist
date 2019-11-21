@@ -8,13 +8,16 @@ var app = new Vue({
     addItem: null,
     selectedNames: [],
     items: [],
-    displayItems:[]
+    displayItems:[],
   },
   created() {
     this.getItems()
   },
   computed: {
+    orderedNames: function () {
+      return this.items.sort((a, b) => (a.name > b.name) ? 1 : -1)
   },
+},
   methods: {
     async upload(){
       try {
