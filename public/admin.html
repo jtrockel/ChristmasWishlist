@@ -22,18 +22,31 @@
         
   <div id="admin">
       <h1> Admin Page</h1>
-      <a href = "index.html"> Go to Voter Page</a>
-      
+      <a href = "index.html"> Go to Shopper Page</a>
+      <br><br>
       <div class="form">
+        Product Name
         <input v-model="name" placeholder="Name">
-        <button type="button" class="btn btn-dark" @click="upload">Add Candidate</button>
+        <br><br>
+        Product Price
+        <input v-model="price" placeholder="Price">
+        <br><br>
+        Product Picture ULR
+        <input v-model="url" placeholder="Picture URL">
+        <br><br>
+        <button type="button" class="btn btn-dark" @click="upload">Add Product</button>
+        <br><br>
       </div>
       
       <ul class = "list-group" v-for="item in items">
         <li class="list-group-item">
           <button type="button" class="btn btn-dark" @click="delEl(item)">delete</button>
-          {{item.name}}
-          {{item.numVotes}}
+          Item Name - {{item.name}}
+          Number Ordered - 
+          {{item.numOrdered}}
+          Price - 
+          {{item.price}}
+          <img :src="item.url" height="70" width="70">
           </li>
       </ul>
       

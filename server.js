@@ -12,7 +12,7 @@ app.use(express.static('public'));
 const mongoose = require('mongoose');
 
 // connect to the database
-mongoose.connect('mongodb://localhost:27017/votes', {
+mongoose.connect('mongodb://localhost:27017/shopping', {
   useNewUrlParser: true
 });
 
@@ -28,7 +28,9 @@ const upload = multer({
 // Create a scheme for items in the museum: a title and a path to an image.
 const itemSchema = new mongoose.Schema({
   name: String,
-  numVotes: Number,
+  price: Number,
+  url: String,
+  numOrdered:Number
 });
 
 // Create a model for items in the museum.
@@ -38,7 +40,9 @@ const Item = mongoose.model('Item', itemSchema);
 app.post('/api/items', async (req, res) => {
   const item = new Item({
     name: req.body.name,
-    numVotes: req.body.numVotes,
+    price: req.body.price,
+    url: req.body.url,
+    numOrdered: req.body.numOrdered
   });
   try {
     await item.save();
@@ -56,7 +60,9 @@ app.put('/api/items/:id', async(req,res)=>{
     var item = await Item.findOne({_id: id});
     console.log(item);
     item.name = req.body.name;
-    item.numVotes = req.body.numVotes+1;
+    item.numOrdered = req.body.numOrdered+1;
+    item.price = req.body.price;
+    item.url = req.body.url;
     console.log("before");
     await item.save();
     console.log("after");

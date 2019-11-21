@@ -2,7 +2,9 @@ var app = new Vue({
   el: '#voter',
   data: {
     name: "",
-    numVotes:0,
+    numOrdered:0,
+    price:"",
+    url:"",
     addItem: null,
     selectedNames: [],
     items: [],
@@ -19,8 +21,10 @@ var app = new Vue({
         console.log(this.name);
         let r2 = await axios.post('/api/items', {
           
-          numVotes: 0,
-          name: this.name
+          numOrdered: 0,
+          name: this.name,
+          url:this.url,
+          price: this.price
         });
         this.addItem = r2.data;
         this.getItems();
@@ -28,6 +32,7 @@ var app = new Vue({
         console.log(error);
       }
     },
+    
     async submitVotes(){
       this.displayItems=[]
         for (var i=0; i< this.selectedNames.length; i++){
@@ -35,7 +40,9 @@ var app = new Vue({
             try {
                 let response = await axios.put("/api/items/" + this.selectedNames[i]._id, {
                     name: this.selectedNames[i].name,
-                    numVotes:this.selectedNames[i].numVotes
+                    numOrdered:this.selectedNames[i].numOrdered,
+                    price: this.selectedNames[i].price,
+                    url:this.selectedNames[i].url
                 });
                 
               } catch (error) {

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Voter Page</title>
+  <title>Shopping Page</title>
   
   <link rel="stylesheet" type="text/css" href ="stylesheets/style.css">
   
@@ -21,24 +21,28 @@
   
         
   <div id="voter">
-    <h1>Voter Page</h1>
+    <h1>Shopping Interface</h1>
     <a href = "admin.html"> Go to Admin Page</a>
-    
+    <h1>Current Products</h1>
     <ul class = "list-group" v-for="item in items">
         <li class="list-group-item">
           <input type="checkbox" :value="item" v-model="selectedNames">
           {{item.name}}
+          {{item.price}}
+          <img :src="item.url" height="70" width="70">
         </li>
     </ul>
     <br>
-    <button type="button" class="btn btn-dark" @click="submitVotes">Submit Votes</button></button>
+    <button type="button" class="btn btn-dark" @click="submitVotes">Submit Purchase</button></button>
 
-    <br>
-    <h1>Submitted Votes</h1>
+    <br><br>
+    <h1>Purchased Items</h1>
     <br>
     <ul class = "list-group" v-for="item in displayItems">
         <li class="list-group-item">
           {{item.name}}
+          {{item.price}}
+          <img :src="item.url" height="70" width="70">
         </li>
     </ul>
       

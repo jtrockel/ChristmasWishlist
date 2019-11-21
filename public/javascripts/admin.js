@@ -2,7 +2,9 @@ var app = new Vue({
   el: '#admin',
   data: {
     name: "",
-    numVotes:0,
+    numOrdered:0,
+    url:"",
+    price:"",
     addItem: null,
     items: [],
   },
@@ -17,12 +19,16 @@ var app = new Vue({
         console.log(this.name);
         let r2 = await axios.post('/api/items', {
           
-          numVotes: 0,
-          name: this.name
+          numOrdered: 0,
+          name: this.name,
+          price: this.price,
+          url:this.url
         });
         this.addItem = r2.data;
         this.getItems();
         this.name="";
+        this.price="";
+        this.url="";
       } catch (error) {
         console.log(error);
       }
