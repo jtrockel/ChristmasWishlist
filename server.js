@@ -12,7 +12,7 @@ app.use(express.static('public'));
 const mongoose = require('mongoose');
 
 // connect to the database
-mongoose.connect('mongodb://localhost:27017/shopping', {
+mongoose.connect('mongodb://localhost:27017/christmasWishList', {
   useNewUrlParser: true
 });
 
@@ -28,7 +28,7 @@ const upload = multer({
 // Create a scheme for items in the museum: a title and a path to an image.
 const itemSchema = new mongoose.Schema({
   name: String,
-  price: Number,
+  forWhom: String,
   url: String,
   numOrdered:Number
 });
@@ -40,7 +40,7 @@ const Item = mongoose.model('Item', itemSchema);
 app.post('/api/items', async (req, res) => {
   const item = new Item({
     name: req.body.name,
-    price: req.body.price,
+    forWhom: req.body.forWhom,
     url: req.body.url,
     numOrdered: req.body.numOrdered
   });
@@ -60,8 +60,8 @@ app.put('/api/items/:id', async(req,res)=>{
     var item = await Item.findOne({_id: id});
     console.log(item);
     item.name = req.body.name;
-    item.numOrdered = req.body.numOrdered+1;
-    item.price = req.body.price;
+    item.numOrdered = req.body.numOrdered;
+    item.forWhom = req.body.forWhom;
     item.url = req.body.url;
     console.log("before");
     await item.save();

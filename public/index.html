@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Shopping Page</title>
+  <title>Admin Page</title>
   
   <link rel="stylesheet" type="text/css" href ="stylesheets/style.css">
   
@@ -20,49 +20,58 @@
 <body>
   
         
-  <div id="voter">
-    <h1>Shopping Interface</h1>
-    <a href = "admin.html"> Go to Admin Page</a>
-    <h1>Current Products</h1>
-    <ul class = "list-group" v-for="item in orderedNames">
-        <li class="list-group-item">
-          <input type="checkbox" :value="item" v-model="selectedNames">
-          {{item.name}} - 
-          Price - {{item.price}}
-          <img :src="item.url" height="70" width="70">
-        </li>
-    </ul>
-    <br>
-    <button type="button" class="btn btn-dark" @click="submitVotes">Submit Purchase</button></button>
-
-    <br><br>
-    <h1>Purchased Items</h1>
-    <br>
-    <ul class = "list-group" v-for="item in displayItems">
-        <li class="list-group-item">
-          {{item.name}} - 
-          Price - {{item.price}}
-          <img :src="item.url" height="70" width="70">
-        </li>
-    </ul>
+  <div id="admin">
+      <h1> Christmas Wishlist</h1>
+      <br><br>
+      <div class="form">
+        Gift Name
+        <input v-model="name" placeholder="Gift Name">
+        <br><br>
+        Who is this gift for?
+        <input v-model="forWhom" placeholder="Name">
+        <br><br>
+        Product Picture ULR
+        <input v-model="url" placeholder="Picture URL">
+        <br><br>
+        <button type="button" class="btn btn-danger" @click="upload">Add Item to Wishlist</button>
+        <br><br>
+      </div>
       
-    
+      <ul class = "list-group" v-for="item in orderedNames">
+        <li class="list-group-item">
+          <button type="button" class="btn btn-success" @click="delEl(item)">Delete Item</button>
+          <button type="button" class="btn btn-danger" @click="addVote(item,u)">Up-Vote Item</button>
+          <button type="button" class="btn btn-success" @click="addVote(item,d)">Down-Vote Item</button>
+
+          <br>
+          {{item.name}}
+          <br>
+          Gift for:  
+          {{item.forWhom}}
+          <br>
+          Number of Votes:  
+          {{item.numOrdered}}
+          <br>
+          <img :src="item.url" height="70" width="70">
+          </li>
+      </ul>
+
+      
       
   </div>
+  
   
   <footer class="page-footer font-small blue">
 
       <!-- Copyright -->
       <div class="footer-copyright text-center py-3">© 2019 Copyright:
-        <a href="https://github.com/BYUCS260/midterm-2-jtrockel"> Github</a>
+        <a href="https://github.com/jtrockel/ChristmasWishlist"> Github</a>
       </div>
     <!-- Copyright -->
   </footer>
-  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
-  <script src="javascripts/script.js"></script>
-  
+  <script src="javascripts/admin.js"></script>
   
   
 </body>

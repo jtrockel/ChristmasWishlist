@@ -6,10 +6,12 @@ var app = new Vue({
     name: "",
     numOrdered:0,
     url:"",
-    price:"",
+    forWhom:"",
     addItem: null,
     items: [],
     emptyList: [],
+    u:1,
+    d:-1
   },
   created() {
     this.getItems()
@@ -28,17 +30,33 @@ var app = new Vue({
           
           numOrdered: 0,
           name: this.name,
-          price: this.price,
+          forWhom: this.forWhom,
           url:this.url
         });
         this.addItem = r2.data;
         this.getItems();
         this.name="";
-        this.price="";
+        this.forWhom="";
         this.url="";
       } catch (error) {
         console.log(error);
       }
+    },
+    async addVote(item, val){
+
+        try {
+            let response = await axios.put("/api/items/" + item._id, {
+              name: item.name,
+              numOrdered:item.numOrdered + val,
+              forWhom: item.forWhom,
+              url:item.url
+          });
+                
+          } catch (error) {
+            console.log(error);
+          }
+        this.getItems();
+        return true;
     },
     async delEl(item){
       try {
